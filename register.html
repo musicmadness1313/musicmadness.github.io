@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Music Madness</title>
+</head>
+<body>
+	<h1>Welcome to Music Madness!</h1>
+
+	<!-- Login Form -->
+	<form>
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required>
+		<br>
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" required>
+		<br>
+		<button type="submit">Log In</button>
+		<p>Don't have an account? <a href="https://github.com/andplaw/music-madness/blob/main/register.html">Register</a>.</p>
+	</form>
+
+	<!-- Game lobby -->
+	<div id="game-lobby">
+		<h2>Current game:</h2>
+		<p>Theme: <span id="game-theme"></span></p>
+		<p>Players:</p>
+		<ul id="player-list">
+			<!-- Players will be added dynamically via JavaScript -->
+		</ul>
+		<p>Elimination and Snark deadline: <span id="elim-snark-deadline"></span></p>
+		<button id="start-game" disabled>Start game</button>
+	</div>
+
+	<!-- Game screen -->
+	<div id="game-screen" hidden>
+		<h2>Round <span id="round-number"></span></h2>
+		<h3>Current playlist:</h3>
+		<ul id="playlist">
+			<!-- Songs will be added dynamically via JavaScript -->
+		</ul>
+		<p>Elimination and Snark deadline: <span id="elim-snark-deadline"></span></p>
+		<button id="eliminate-song" disabled>Eliminate a song</button>
+	</div>
+
+	<!-- Semi-finals screen -->
+	<div id="semifinals-screen" hidden>
+		<h2>Semi-finals</h2>
+		<h3>Choose your favourite and second favourite songs:</h3>
+		<ul id="semifinals-playlist">
+			<!-- Semi-finalist songs will be added dynamically via JavaScript -->
+		</ul>
+		<button id="vote-semifinals" disabled>Vote</button>
+	</div>
+
+	<!-- Finals screen -->
+	<div id="finals-screen" hidden>
+		<h2>Finals</h2>
+		<h3>Choose your favourite and second favourite songs:</h3>
+		<ul id="finals-playlist">
+			<!-- Finalist songs will be added dynamically via JavaScript -->
+		</ul>
+		<button id="vote-finals" disabled>Vote</button>
+	</div>
+
+	<script src="game.js"></script>
+</body>
+</html>
