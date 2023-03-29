@@ -3,33 +3,46 @@
 <head>
 	<title>Register</title>
 	<script>
-	    function addUser() {
-	      let username = document.getElementById("username").value;
+		function addUser() {
+	      		let email = document.getElementById("username").value;
+			let psw = document.getElementById("psw").value;
+			let psw_repeat = document.getElementById("psw_repeat").value;
+			
+			if (psw == psw_repeat) {
 		    
-		// Retrieve existing data from Local Storage
-		let existingData = JSON.parse(localStorage.getItem("data"));
+				// Retrieve existing data from Local Storage
+				let existingData = JSON.parse(localStorage.getItem("data"));
 
-		if (existingData === null) {
-			existingData = {};
-		}
+				if (existingData === null) {
+					existingData = {};
+				}
 
-		// Add new data
-		if (!existingData.hasOwnProperty(user)) {
-			existingData[user] = [];
-		}
+				// Check is email is already registered
+				if (!existingData.hasOwnProperty(email)) {
+					// Add new user
+					existingData[email] = [];
+					existingData[email].push(psw);
 
-		<!-- existingData[user].push(song); -->
+					// Store updated data in Local Storage
+					localStorage.setItem("data", JSON.stringify(existingData));
 
-		// Store updated data in Local Storage
-		localStorage.setItem("data", JSON.stringify(existingData));
+					// Clear input fields
+					document.getElementById("email").value = "";
 
-		// Clear input fields
-		document.getElementById("username").value = "";
+					// Display success message
+					document.getElementById("message").innerHTML = "Registration successful! :)";
+					document.getElementById("redirect").innerHTML = "Return to <a href="https://musicmadness1313.github.io/musicmadness.github.io/">Sign in</a>."
+				} else {
+					// Display error message
+					document.getElementById("message").innerHTML = "Email has already been registered! :("
+				}
 
-		// Display success message
-		document.getElementById("message").innerHTML = "Registration successful!";
+			} else {
+				// Display error message
+				document.getElementById("message").innerHTML = "The passwords do not match! :("
+			}
 
-	    }
+	  	}
 	  </script>
 </head>
 	
@@ -39,12 +52,20 @@
       		<p>Please fill in this form to create an account.</p>
 	   
         	<hr>
-        		<label for="username"><b>Username:</b></label>
-        		<input type="text" placeholder="Enter Username" name="username" id="username" required>
+		
+        	<label for="email"><b>Email:</b></label>
+        	<input type="text" placeholder="Enter Email" name="email" id="email" required>
+		
+		<label for="psw"><b>Password:</b></label>
+        	<input type="text" placeholder="Enter Password" name="psw" id="psw" required>
+		
+		<label for="psw_repeat"><b>Repeat Password:</b></label>
+        	<input type="text" placeholder="Repeat Password" name="psw_repeat" id="psw_repeat" required>
+		
      		<hr>
 
-		<!-- <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p> -->
 		<button onclick="addUser()">Register</button>
+		<p id="message"></p> <p id="redirect"></p>
     	</div>
 
     	<div class="container signin">
